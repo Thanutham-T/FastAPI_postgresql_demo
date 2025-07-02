@@ -1,3 +1,3 @@
 @echo off
-poetry run fastapi dev .\src\FastAPI_postgresql_demo\main.py
+poetry run fastapi dev .\FastAPI_postgresql_demo\main.py
 pause
