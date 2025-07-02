@@ -3,7 +3,9 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-app = FastAPI()
+app = FastAPI(title="FastAPI PostgreSQL Demo",
+              description="A simple FastAPI application demonstrating CRUD operations with PostgreSQL.",
+              version="1.0.0")
 
 class Item(BaseModel):
     name: str
@@ -15,18 +17,30 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
+@app.get("/items/{item_id}",
+        tags=["items"],
+        summary="Read an item",
+        description="Get an item by its ID. Optionally, you can provide a query parameter")
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
-@app.post("/items/")
+@app.post("/items/"
+          ,tags=["items"],
+          summary="Create an item",
+          description="Create a new item with a name, price, and optional offer status.")
 def create_item(item: Item):
     return item
 
-@app.put("/items/{item_id}")
+@app.put("/items/{item_id}",
+          tags=["items"],
+          summary="Update an item",
+          description="Update an existing item by its ID. Provide the new item details.")
 def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 
-@app.delete("/items/{item_id}")
+@app.delete("/items/{item_id}",
+            tags=["items"],
+            summary="Delete an item",
+            description="Delete an item by its ID.")
 async def delete_item(item_id: int):
     return {"message": f"Item with id {item_id} deleted successfully."}
