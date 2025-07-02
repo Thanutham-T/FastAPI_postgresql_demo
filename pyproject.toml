@@ -11,10 +11,6 @@ dependencies = [
     "fastapi[standard] (>=0.115.14,<0.116.0)"
 ]
 
-[tool.poetry]
-packages = [{include = "FastAPI_postgresql_demo", from = "src"}]
-
-
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
