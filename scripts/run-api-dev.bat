@@ -1,0 +1,3 @@
+@echo off
+poetry run fastapi dev .\FastAPI_postgresql_demo\main.py
+pause
